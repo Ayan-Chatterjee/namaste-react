@@ -1,0 +1,25 @@
+{
+  "name": "namaste-react-app",
+  "version": "1.0.0",
+  "description": "This is a live course",
+  "repository": {
+    "type": "git",
+    "url": "yet to add"
+  },
+  "license": "ISC",
+  "author": "Ayan Chatterjee",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "browserlist": [
+    "cover 99.5%"
+  ]
+}
