@@ -4,22 +4,26 @@
   "description": "This is a live course",
   "repository": {
     "type": "git",
-    "url": "yet to add"
+    "url": "https://github.com/Ayan-Chatterjee/namaste-react"
   },
   "license": "ISC",
   "author": "Ayan Chatterjee",
   "type": "commonjs",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "parcel": "^2.16.0"
   },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
-  "browserlist": [
-    "cover 99.5%"
+  "browserslist": [
+    "last 2 chrome version"
   ]
 }
