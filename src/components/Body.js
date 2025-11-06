@@ -1,7 +1,8 @@
-import { restaurantData,API_URL } from "../constants";
+import { API_URL } from "../constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState,useEffect, use } from "react";
+import { useState, useEffect, use } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function filterData(searchText, restaurants) {
     const filteredData = restaurants.filter((restaurant) =>
@@ -15,29 +16,30 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-    useEffect(()=>{
-        console.log("useEffect called");
+    useEffect(() => {
+        // console.log("useEffect called");
         getRestaurants();
-    },[])
+    }, [])
     async function getRestaurants(params) {
         const data = await fetch(API_URL);
         const json = await data.json();
+        // console.log("Fetched Data:", json);
         const restaurantData = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         // console.log(restaurantData);
         setAllRestaurants(restaurantData);
         setFilteredRestaurants(restaurantData);
     }
-    console.log("Body Rendered");
-    
+    // console.log("Body Rendered");
+
     // conditional rendering
     // if restaurants is empty => shimmer UI
     // if restaurants has data => actual data UI
     // console.log("All Restaurants:", allRestaurants);
 
-    if(!allRestaurants) return null;
+    if (!allRestaurants) return null;
 
-    if(allRestaurants?.length === 0){
-        return <Shimmer/>;
+    if (allRestaurants?.length === 0) {
+        return <Shimmer />;
     }
 
     return (
@@ -57,22 +59,24 @@ const Body = () => {
                     onClick={(e) => {
                         // filter the data
                         // console.log("button clicked", searchText);
-                        if(searchText===""){
+                        if (searchText === "") {
                             setFilteredRestaurants(allRestaurants);
                             return;
-                        }else{
-                        const data = filterData(searchText, allRestaurants);
-                        setFilteredRestaurants(data)
+                        } else {
+                            const data = filterData(searchText, allRestaurants);
+                            setFilteredRestaurants(data)
                         }
                     }
-                }
+                    }
                 >Search</button>
             </div>
             <div className="restaurant-list" >
                 {
                     filteredRestaurants.map(res => {
-                        if(res.length === 0) return <h1>No restaurant match your filter "{searchText}"</h1>;
-                        return <RestaurantCard {...res.info} key={res.info.id} />
+                        if (res.length === 0) return <h1>No restaurant match your filter "{searchText}"</h1>;
+                        return <Link to={"/restaurant/" + res.info.id} key={res.info.id} >
+                            <RestaurantCard {...res.info} key={res.info.id} />
+                        </Link>
                     })
                 }
             </div>

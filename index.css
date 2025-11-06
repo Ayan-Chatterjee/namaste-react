@@ -32,3 +32,12 @@ h1{
     display: flex;
     flex-wrap: wrap;
 }
+.shimmer-card{
+    width: 200px;
+    height: 250px;
+    border: 1px solid black;
+    margin: 10px;
+    background-color: lightgray;
+    animation: shimmer 1.5s infinite;
+    display: flex;
+}
