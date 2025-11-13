@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../constants";
+import { TO_DO } from "../constants";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
     const { id } = useParams();
-    const [restaurant, setRestaurant] = useState({});
+    const [restaurant, setRestaurant] = useState([]);
     useEffect(() => {
         // console.log("useEffect - RestaurantMenu");
         getResInfo();
@@ -13,13 +14,16 @@ const RestaurantMenu = () => {
     async function getResInfo(params) {
         try {
             // console.log("Modified Id:", idMod);
-            const data = await fetch("https://jsonplaceholder.typicode.com/todos/"+idMod);
+            const data = await fetch(TO_DO+idMod);
             const json = await data.json();
             // console.log("Fetching Menu Info", json);
             setRestaurant(json);
         } catch (error) {
             console.log("Error while fetching restaurant menu info:", error);
         }
+    }
+    if(restaurant.length===0){
+        return <Shimmer/>;
     }
     return (
         <div>
