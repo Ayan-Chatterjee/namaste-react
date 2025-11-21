@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { LOGO_IMG_URL } from "../constants";
 import Logo from "../assets/img/foodvilla.png";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 const loggedInUser = () => {
     return true;
 }
+
 
 // SPA - Single Page Application
 
@@ -19,8 +21,10 @@ const Title = () => (
     </a>
 );
 
+
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const isOnline = useOnline();
     // useEffect(()=>{
     //         console.log("Header useEffect called");
     //     },[])
@@ -39,9 +43,16 @@ const Header = () => {
                     <Link to="/contact">
                         <li>Contact</li>
                     </Link>
+                    <Link to="/contact">
+                        <li>Contact</li>
+                    </Link>
+                    <Link to="/instamart">
+                        <li>Instamart</li>
+                    </Link>
                     <li>Cart</li>
                 </ul>
             </div>
+            <h1>{isOnline?"🟢":"🔴"}</h1>
             {
                 isLoggedIn ?
                     <button className="logout-btn" onClick={() => setIsLoggedIn(false)}>Logout</button> :

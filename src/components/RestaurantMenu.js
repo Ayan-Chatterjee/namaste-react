@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { TO_DO } from "../constants";
+
 import Shimmer from "./Shimmer";
+import useRestaorant from "../utils/useRestaorant";
 
 const RestaurantMenu = () => {
     const { id } = useParams();
-    const [restaurant, setRestaurant] = useState([]);
-    useEffect(() => {
-        // console.log("useEffect - RestaurantMenu");
-        getResInfo();
-    }, []);
-    const idMod = id % 10;
-    async function getResInfo(params) {
-        try {
-            // console.log("Modified Id:", idMod);
-            const data = await fetch(TO_DO+idMod);
-            const json = await data.json();
-            // console.log("Fetching Menu Info", json);
-            setRestaurant(json);
-        } catch (error) {
-            console.log("Error while fetching restaurant menu info:", error);
-        }
-    }
+    const restaurant = useRestaorant(id);
     if(restaurant.length===0){
         return <Shimmer/>;
     }
