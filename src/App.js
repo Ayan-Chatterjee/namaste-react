@@ -10,18 +10,29 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Profile from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 // import Instamart from "./components/Instamart";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+    const [user, setUser] = useState({
+        name: "Ayan Chatterjee",
+        email: "support@namastedev.com",
+    });
     return (
         <>
-            <Header />
-            {/* Outlet - Place where child route components will be rendered */}
-            <Outlet />
-            <Footer />
+            <UserContext.Provider
+                value={{
+                    user: user,
+                    setUser: setUser,
+                }}
+            >
+                <Header />
+                <Outlet />
+                <Footer />
+            </UserContext.Provider>
         </>
     )
 };
@@ -38,10 +49,10 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: 
-                <Suspense>
-                    <About />
-                </Suspense>,
+                element:
+                    <Suspense>
+                        <About />
+                    </Suspense>,
                 children: [
                     {
                         path: "profile",
@@ -59,10 +70,10 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: "/instamart",
-                element: 
-                <Suspense fallback={<Shimmer/>}>
-                    <Instamart />
-                </Suspense>
+                element:
+                    <Suspense fallback={<Shimmer />}>
+                        <Instamart />
+                    </Suspense>
             }
         ]
     },

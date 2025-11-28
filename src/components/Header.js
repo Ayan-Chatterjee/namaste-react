@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { LOGO_IMG_URL } from "../constants";
 import Logo from "../assets/img/foodvilla.png";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 const loggedInUser = () => {
     return true;
 }
@@ -29,6 +30,7 @@ const Header = () => {
     //         console.log("Header useEffect called");
     //     },[])
     // console.log("Header Rendered");
+    const {user} = useContext(UserContext);
     return (
         <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-yellow-50 md:bg-green-50 lg:bg-blue-50">
             <Title />
@@ -53,6 +55,7 @@ const Header = () => {
                 </ul>
             </div>
             <h1>{isOnline?"🟢":"🔴"}</h1>
+            <span className="p-10 font-bold text-red-900">{user.name}</span>
             {
                 isLoggedIn ?
                     <button className="logout-btn" onClick={() => setIsLoggedIn(false)}>Logout</button> :
