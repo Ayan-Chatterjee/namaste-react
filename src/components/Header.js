@@ -14,7 +14,7 @@ const loggedInUser = () => {
 const Title = () => (
     <a href="/">
         <img
-            className="logo"
+            className="w-24"
             alt="Logo"
             src={LOGO_IMG_URL}
         />
@@ -30,24 +30,24 @@ const Header = () => {
     //     },[])
     // console.log("Header Rendered");
     return (
-        <div className="header">
+        <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-yellow-50 md:bg-green-50 lg:bg-blue-50">
             <Title />
             <div className="nav-items">
-                <ul>
+                <ul className="flex py-10">
                     <Link to="/">
-                        <li>Home</li>
+                        <li className="px-10">Home</li>
                     </Link>
                     <Link to="/about">
-                        <li>About</li>
+                        <li className="px-10">About</li>
                     </Link>
                     <Link to="/contact">
-                        <li>Contact</li>
+                        <li className="px-10"> Contact</li>
                     </Link>
                     <Link to="/contact">
-                        <li>Contact</li>
+                        <li className="px-10">Contact</li>
                     </Link>
                     <Link to="/instamart">
-                        <li>Instamart</li>
+                        <li className="px-10">Instamart</li>
                     </Link>
                     <li>Cart</li>
                 </ul>

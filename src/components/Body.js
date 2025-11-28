@@ -50,10 +50,10 @@ const Body = () => {
 
     return (
         <>
-            <div className="search-container">
+            <div className="search-container p-5 bg-pink-50 my-5">
                 <input
                     type="text"
-                    className="search-input"
+                    className="search-input focus:bg-purple-200 p-2 m-2 rounded-md border border-purple-900"
                     placeholder="Search for restaurants..."
                     value={searchText}
                     onChange={(e) => {
@@ -61,7 +61,7 @@ const Body = () => {
                     }}
                 />
                 <button
-                    className="search-btn"
+                    className="p-2 m-2 bg-purple-900 text-white rounded-md hover:bg-purple-700 "
                     onClick={(e) => {
                         // filter the data
                         // console.log("button clicked", searchText);
@@ -76,7 +76,7 @@ const Body = () => {
                     }
                 >Search</button>
             </div>
-            <div className="restaurant-list" >
+            <div className="restaurant-list flex flex-wrap" >
                 {
                     filteredRestaurants.map(res => {
                         if (res.length === 0) return <h1>No restaurant match your filter "{searchText}"</h1>;
