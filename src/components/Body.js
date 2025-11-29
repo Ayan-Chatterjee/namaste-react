@@ -103,7 +103,7 @@ const Body = () => {
                     filteredRestaurants.map(res => {
                         if (res.length === 0) return <h1>No restaurant match your filter "{searchText}"</h1>;
                         return <Link to={"/restaurant/" + res.info.id} key={res.info.id} >
-                            <RestaurantCard {...res.info} key={res.info.id} />
+                            <RestaurantCard {...res.info} />
                         </Link>
                     })
                 }
